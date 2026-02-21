@@ -201,5 +201,5 @@ meta = (GameMeta()
         .with_release_date("2024-05-24")
         .with_tags(["arcade", "retro", "runner", "night-mode"])
         .with_group_number(1)
-        .with_authors(["IA-Assistant", "DevUser"]))
+        .with_authors(["victor"]))
 

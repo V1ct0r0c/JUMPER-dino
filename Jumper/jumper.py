@@ -23,8 +23,8 @@ NOCHE_TEXTO = (241, 241, 241)
 ALTURA_SUELO = BASE_HEIGHT - 150 
 
 class Jumper(GameBase): 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, metadata):
+        super().__init__(metadata)
         
         self.snd_jump = SoundGenerator.create_tone(600, 0.1)
         self.snd_hit = SoundGenerator.create_tone(200, 0.5)
@@ -184,8 +184,3 @@ class Jumper(GameBase):
                         self.is_jumping = True
 
 
-meta = (GameMeta()
-        .with_title("JUMPER")
-        .with_description("Dino Arcade")
-        .with_release_date("2024-05-26")
-        .with_authors(["Michel larez, Victor Coa"]))

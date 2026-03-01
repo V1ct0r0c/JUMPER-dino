@@ -1,47 +1,19 @@
-import pygame
-import sys
-from arcade_machine_sdk import BASE_WIDTH, BASE_HEIGHT, DEFAULT_FPS
 from jumper import Jumper
+from arcade_machine_sdk import GameMeta
+import pygame
 
-def run_game():
-
+if not pygame.get_init():
     pygame.init()
-    pygame.mixer.init() 
-    
-    screen = pygame.display.set_mode((BASE_WIDTH, BASE_HEIGHT))
-    pygame.display.set_caption("Arcade Machine Emulator - Jumper")
-    
-    try:
-        game = Jumper()
-        game.surface = screen
-    except Exception as e:
-        print(f"Error al instanciar el juego: {e}")
-        return
 
-    clock = pygame.time.Clock()
-    running = True
+metadata = (GameMeta()
+        .with_title("Jumper")
+        .with_description("Dino Arcade")
+        .with_release_date("2024-05-26")
+        .add_tag("Plataformas")
+        .with_group_number(4)
+        .with_authors(["Michel Larez", "Victor Coa"]))
 
-    print("--- Emulador Iniciado ---")
-    print("Controles: ESPACIO para saltar, FLECHA ABAJO para agacharse.")
-
-    while running:
-        dt = clock.tick(DEFAULT_FPS) / 1000.0
-        
-        events = pygame.event.get()
-        for event in events:
-            if event.type == pygame.QUIT:
-                running = False
-        
-        game.handle_events(events)
-        
-        game.update(dt)
-        
-        game.render()
-        
-        pygame.display.flip()
-
-    pygame.quit()
-    sys.exit()
+game = Jumper(metadata)
 
 if __name__ == "__main__":
-    run_game()
+    game.run_independently()
